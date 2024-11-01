@@ -2,7 +2,7 @@
 
 ## Overview
 
-**RBXASSET CREATOR** is a tool for Roblox Studio so you can test stuff before uploading it. I don’t like having to drag stuff into the content folder, so I find it easier to use this. Honestly, I was pretty bored and needed something to make.
+**RBXASSET CREATOR** is a tool for Roblox Studio so you can test stuff before uploading it. I don’t like having to drag stuff into the content folder, so I find it easier to use this. Honestly, I was pretty bored and needed something to make tbh
 
 ## What It Does
 
