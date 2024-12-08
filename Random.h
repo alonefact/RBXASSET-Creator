@@ -3,5 +3,5 @@
 #include <string>
 
 namespace Random {
-    std::wstring New(size_t Length);
+    std::string New(size_t Length);
 }
