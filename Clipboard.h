@@ -1,8 +1,9 @@
 #pragma once
+
 #include <string>
 #include <iostream>
 #include <windows.h>
 
 namespace Clipboard {
-    void Copy(const std::wstring& text);
+    void Copy(const std::string& text);
 }
