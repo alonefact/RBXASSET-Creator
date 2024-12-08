@@ -1,32 +1,28 @@
 #include "Clipboard.h"
 
-namespace Clipboard {
+void Clipboard::Copy(const std::string& text) {
+    if (!OpenClipboard(NULL)) {
+        return;
+    }
 
-    void Copy(const std::wstring& text) {
-        HGLOBAL hGlob = GlobalAlloc(GMEM_MOVEABLE, (text.size() + 1) * sizeof(wchar_t));
-        if (!hGlob) {
-            return;
-        }
+    EmptyClipboard();
 
-        wchar_t* pText = static_cast<wchar_t*>(GlobalLock(hGlob));
-        if (!pText) {
-            GlobalFree(hGlob);
-            return;
-        }
+    size_t size = (text.size() + 1) * sizeof(char);
+    HGLOBAL hGlob = GlobalAlloc(GMEM_MOVEABLE, size);
+    if (!hGlob) {
+        CloseClipboard();
+        return;
+    }
 
-        wcscpy_s(pText, text.size() + 1, text.c_str());
+    char* pText = static_cast<char*>(GlobalLock(hGlob));
+    if (pText) {
+        strcpy_s(pText, text.size() + 1, text.c_str());
         GlobalUnlock(hGlob);
 
-        if (OpenClipboard(NULL)) {
-            EmptyClipboard();
-            if (SetClipboardData(CF_UNICODETEXT, hGlob) == NULL) {
-                GlobalFree(hGlob);
-            }
-            CloseClipboard();
-        }
-        else {
+        if (SetClipboardData(CF_TEXT, hGlob) == NULL) {
             GlobalFree(hGlob);
         }
     }
 
+    CloseClipboard();
 }
