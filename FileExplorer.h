@@ -1,4 +1,5 @@
 #pragma once
+
 #include <string>
 #include <string>
 #include <memory>
@@ -9,5 +10,5 @@
 #include "FileExplorer.h"
 
 namespace FileExplorer {
-    std::wstring Search();
+    std::string Search();
 }
