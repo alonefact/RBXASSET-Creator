@@ -1,6 +1,3 @@
-#include <iostream>
-#include <windows.h>
-#include <vector>
 #include "FileExplorer.h"
 #include "Clipboard.h"
 
