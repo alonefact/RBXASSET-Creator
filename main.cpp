@@ -5,9 +5,9 @@
 #include "Clipboard.h"
 
 int main() {
-    SetConsoleTitle(L"RBXASSET Creator");
+    SetConsoleTitleA("RBXASSET Creator");
 
-    std::vector<std::wstring> ConvertedAssets;
+    std::vector<std::string> ConvertedAssets;
 
     while (true) {
         system("cls");
@@ -16,7 +16,7 @@ int main() {
         std::cout << std::endl;
 
         for (const auto& Asset : ConvertedAssets) {
-            std::wcout << Asset << std::endl;
+            std::cout << Asset << std::endl;
         }
 
         std::cin.get();
@@ -24,20 +24,20 @@ int main() {
         HWND ConsoleWindow = GetConsoleWindow();
         ShowWindow(ConsoleWindow, SW_MINIMIZE);
 
-        std::wstring CopiedFilePath = FileExplorer::Search();
+        std::string CopiedFilePath = FileExplorer::Search();
 
         ShowWindow(ConsoleWindow, SW_RESTORE);
 
         if (!CopiedFilePath.empty()) {
-            std::wstring FileName = CopiedFilePath.substr(CopiedFilePath.find_last_of(L"\\") + 1);
-            std::wstring RbxAsset = L"rbxasset://" + FileName;
+            std::string FileName = CopiedFilePath.substr(CopiedFilePath.find_last_of("\\") + 1);
+            std::string RbxAsset = "rbxasset://" + FileName;
 
             ConvertedAssets.push_back(RbxAsset);
 
-            std::wcout << RbxAsset << std::endl;
+            std::cout << RbxAsset << std::endl;
 
             Clipboard::Copy(RbxAsset);
-            std::wcout << L"Copied to Clipboard!" << std::endl;
+            std::cout << "Copied to Clipboard!" << std::endl;
         }
         else {
             std::cout << "Failed to Create Rbxasset." << std::endl;
